@@ -11,6 +11,11 @@ class Navbar extends React.Component {
                 <li>
                     <Link to="/clown">CLOWN</Link>
                 </li>
+
+                <li>
+                    <Link to="/crud">CRUD</Link>
+                </li>
+
                 <li>
                     <Link to="/">EMOJICLICKER</Link>
                 </li>

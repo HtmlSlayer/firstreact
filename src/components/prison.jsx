@@ -32,7 +32,7 @@ class Prison extends Component {
         return (
             <>
                 <ul>
-                    {students.map(element => <li> {element} </li>)}
+                    {students.map(element => <li key={element}> {element} </li>)}
                 </ul>
                 <div style={{marginLeft: "25px"}}>{this.interface()}</div>
                 <button className={this.handleStyle()} onClick={this.handleIncrementation}>Incremente</button>
