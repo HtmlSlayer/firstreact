@@ -4,6 +4,8 @@ import React from 'react';
 
 const axios = require('axios')
 
+const apiEndpoint = "https://jsonplaceholder.typicode.com/users";
+
 class Crud extends React.Component {
 
     state = {
@@ -14,9 +16,30 @@ class Crud extends React.Component {
         // perfect place for GET request
         // Promised returned
         // Promises states : Pending - Fullfiled - Rejected
-        const {data} = await axios.get("https://jsonplaceholder.typicode.com/users");
+        const {data} = await axios.get(apiEndpoint);
         this.setState({users: data});
     }
+
+    handleAdd = async () => {
+        const obj = {name: "Decruyper", username : "Laura"}
+        await axios.post(apiEndpoint, obj)
+        const users = [...this.state.users, obj]
+
+        this.setState({users})
+
+    }
+
+    handleUpdate = async user => {
+        user.username = "Bob";
+        await axios.put(apiEndpoint + "/" + user.id, user);
+
+        const users = [...this.state.users]
+        const index = users.indexOf(user)
+        user[index] = {...users}
+        this.setState({users})
+
+    }
+
     render() { 
         return (
         <>
@@ -27,6 +50,7 @@ class Crud extends React.Component {
                                 <th>Name</th>
                                 <th>Username</th>
                                 <th>Email</th>
+                                <th>Update</th>
                             </tr>
                         </thead>
 
@@ -37,6 +61,7 @@ class Crud extends React.Component {
                                 <td>{user.name}</td>
                                 <td>{user.username}</td>
                                 <td>{user.email}</td>
+                                <td><button onClick={() => this.handleUpdate(user)}>Update</button></td>
                             </tr>)}
                         </tbody>
                         
@@ -47,6 +72,9 @@ class Crud extends React.Component {
                             </tr>
                         </tfoot>
                     </table>
+
+                    <button onClick={this.handleAdd}>Add</button>
+                    
         </>
         )
         ;
