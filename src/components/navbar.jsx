@@ -15,7 +15,7 @@ class Navbar extends React.Component {
                     <Link to="/">EMOJICLICKER</Link>
                 </li>
                 <li>
-                <Link to="/Prison">JAIL</Link>
+                <Link to="/Prison">PRISON</Link>
                 </li>
             </ul>
         </>
