@@ -40,6 +40,16 @@ class Crud extends React.Component {
 
     }
 
+    handleDelete = async user => {
+        
+        await axios.delete(apiEndpoint + "/" + user.id)
+
+        const users = this.state.users.filter(element => element.id != user.id)
+        this.setState({users})
+        
+
+    }
+
     render() { 
         return (
         <>
@@ -50,7 +60,7 @@ class Crud extends React.Component {
                                 <th>Name</th>
                                 <th>Username</th>
                                 <th>Email</th>
-                                <th>Update</th>
+                                
                             </tr>
                         </thead>
 
@@ -62,6 +72,7 @@ class Crud extends React.Component {
                                 <td>{user.username}</td>
                                 <td>{user.email}</td>
                                 <td><button onClick={() => this.handleUpdate(user)}>Update</button></td>
+                                <td><button onClick={() => this.handleDelete(user)}>Delete</button></td>
                             </tr>)}
                         </tbody>
                         
